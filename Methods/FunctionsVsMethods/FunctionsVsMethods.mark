@@ -1,0 +1,22 @@
+Methods在使用上比Functions更簡潔,更清楚
+
+例如Functions是這樣
+還必須傳入Guitarist參數
+
+func UpdateGuitarist(guitarist *Guitarist, params ParamsStruct) {
+  fmt.Println("This is a simple function")
+}
+
+// Calling this function
+UpdateGuitarist(guitarist, params)
+
+
+如果改成Methods,只要給定對象(object),下面的object就可以直接使用了
+不用額外傳入參數
+
+func (g *Guitarist) Update(params ParamsStruct) {
+  fmt.Println("This is a simple method")
+}
+
+// this is far nicer in my opinion
+myGuitarist.Update(params)
