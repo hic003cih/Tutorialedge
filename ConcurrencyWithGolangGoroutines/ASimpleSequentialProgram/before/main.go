@@ -5,6 +5,8 @@ import (
 	"time"
 )
 
+// a very simple function that we'll
+// make asynchronous later on
 func compute(value int) {
 	for i := 0; i < value; i++ {
 		time.Sleep(time.Second)
@@ -15,9 +17,11 @@ func compute(value int) {
 func main() {
 	fmt.Println("Goroutine Tutorial")
 
-	go compute(10)
-	go compute(15)
+	// sequential execution of our compute function
+	compute(10)
+	compute(15)
 
+	// we scan fmt for input and print that to our console
 	var input string
 	fmt.Scanln(&input)
 }

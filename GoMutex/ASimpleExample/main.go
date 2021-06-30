@@ -1,3 +1,5 @@
+//Mutex用來防止同時存取同一筆資料時,造成的資料丟失
+
 package main
 
 import (
@@ -15,9 +17,15 @@ func init() {
 }
 
 func deposit(value int, wg *sync.WaitGroup) {
+	//先將func鎖住
+
+	//Lock不能使用兩次,要不然會造成Deadlock
 	mutex.Lock()
 	fmt.Printf("Depositing %d to account with balance: %d\n", value, balance)
 	balance += value
+	//執行結束以後將func解鎖
+	//使用了Lock最後一定要用Unlock
+	//要不然會造成Deadlock
 	mutex.Unlock()
 	wg.Done()
 	fmt.Printf("New Balance %d\n", balance)
